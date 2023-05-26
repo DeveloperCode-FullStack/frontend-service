@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="stylesheet" href="../Asset/Css/View/Dashboard.css">
+        <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+        <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="../Asset/Img/hoja 1.png" type="image/x-icon">
+        <!-- Agregar jquery -->
+        <script src="../Asset/Library/node_modules/jquery/dist/jquery.js"></script>
+        <script src="../Js/Login.js"></script>
+        <title>Panel de Control | Spa</title>
+   </head>
+    <body>
+        <div class="sidebar">
+            <div class="logo-details">
+                <div class="logo_name"><img src="../Asset/Img/logo.png" alt="" style="height: 40px;"></div>
+                <i class='bx bx-menu' id="btn" ></i>
+            </div>
+            <li>
+                <i class="fi fi-rr-search"></i>
+                <input type="text" placeholder="Buscar...">
+                <span class="tooltip">Buscador</span>
+            </li>
+            <ul class="nav-list" id="dataPermission">
+                <span class="modulo">Seguridad</span>
+                <li>
+                    <a href="Board.html" target="workSpace">
+                        <i class="fi fi-rr-layout-fluid"></i>
+                        <span class="links_name">Tablero</span>
+                    </a>
+                    <span class="tooltip">Tablero</span>
+                </li>
+                <li>
+                    <a href="Security/Person.html" target="workSpace">
+                        <i class="fi fi-rr-users"></i>
+                        <span class="links_name">Personas</span>
+                    </a>
+                    <span class="tooltip">Personas</span>
+                </li>
+                <li>
+                    <a href="Security/Role.html" target="workSpace">
+                        <i class="fi fi-rr-clipboard-user"></i>
+                        <span class="links_name">Roles</span>
+                    </a>
+                    <span class="tooltip">Roles</span>
+                </li>
+
+                <li>
+                    <a href="Security/Module.html" target="workSpace">
+                        <i class="fi fi-rr-browser"></i>
+                        <span class="links_name">Modulos</span>
+                    </a>
+                    <span class="tooltip">Modulos</span>
+                </li>
+                
+                <li>
+                    <a href="Security/View.html" target="workSpace">
+                        <i class="fi fi-rr-computer"></i>
+                        <span class="links_name">Vistas</span>
+                    </a>
+                    <span class="tooltip">Vistas</span>
+                </li>
+                
+                <li>
+                    <a href="Security/View_role.html" target="workSpace">
+                        <i class="fi fi-rr-desktop-wallpaper"></i>
+                        <span class="links_name">Vistas Roles</span>
+                    </a>
+                    <span class="tooltip">Vistas Roles</span>
+                </li>
+                <li>
+                    <a href="Security/User.html" target="workSpace">
+                        <i class="fi fi-rr-user-add"></i>
+                        <span class="links_name">Usuarios</span>
+                    </a>
+                    <span class="tooltip">Usuarios</span>
+                </li>
+                <li>
+                    <a href="Security/User_role.html" target="workSpace">
+                        <i class="fi fi-rr-id-badge"></i>
+                        <span class="links_name">Usuarios Roles</span>
+                    </a>
+                    <span class="tooltip">Usuarios Roles</span>
+                </li>              
+                <li class="profile">
+                    <div class="profile-details">
+                        <img src="../Asset/Img/myAvatar.png" alt="profileImg">
+                        <div class="name_job">
+                            <div class="name">Johan Celis</div>
+                            <div class="job">Administrador</div>
+                        </div>
+                        
+                    </div>
+
+                    <a id="log_out" name='cerrar' onclick="SignOut()"><i class='bx bx-log-out bx-lg'  ></i></a>
+                </li>
+            </ul>
+        </div>
+       <iframe src="Board.html" class="home-section" id="workSpace" name="workSpace" frameborder="0"></iframe>
+        
+    </body>
+    <script src="../Js/Dashboard.js"></script>
+</html>
+<script>
+    //loadPermission();
+</script>

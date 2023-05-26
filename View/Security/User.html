@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel="stylesheet" href="../../Asset/Css/View/Security/Users.css">
+    
+    <!-- Agregar jquery -->
+    <script src="../../Asset/Library/node_modules/jquery/dist/jquery.js"></script>
+    <script src="../../Js/Security/User.js"></script>
+    <script src="../../Js/LoadData.js"></script>
+    <title>Persons | Spa</title>
+</head>
+
+<body>
+    <div class="container">
+        <form name="formData" id="formData">
+            <div id="headData" class="headData">
+                <h2>Usuarios</h2>
+            </div>
+
+            <div id="bodyData" class="bodyData">
+                <input type="hidden" name="id" id="id" value="">
+                <div class="form-group">
+                    
+                    <div class="campos">
+                        <label for="" class="form-label mt-2">Persona asociada</label><br>
+                        <select class="form-select" id="personId" name="personId">
+                            <!-- data result database -->
+                        </select>
+                    </div>
+
+                    <div class="campos">
+                        <label for="" class="form-label mt-2 ">Usuario</label><br>
+                        <input type="text" class="form-control codigo" name="user" id="user" aria-describedby="" placeholder="Digite el usuario">
+                    </div>
+
+                    <div class="campos">
+                        <label for="" class="form-label mt-2">Contraseña</label><br>
+                        <input type="password" class="form-control" name="password" id="password" aria-describedby="" placeholder="Digite la contraseña" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                    </div>
+
+                    <div class="campos">
+                        <label for="" class="form-label mt-2">Estado</label><br>
+                        <select class="form-select" id="state" name="state">
+                            <!-- data result database -->
+                            <option selected="" selected disabled hidden>--- Seleccione ---</option>
+                            <option value="0">Inactivo</option>
+                            <option value="1">Activo</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <div id="buttonData" class="buttonData">
+        <button type="button" id="btnAdd" name="btnAdd" class="btn btn-primary" onclick="Add()">Agregar</button>
+        <button type="button" id="btnUpdate" name="btnUpdate" class="btn btn-success" onclick="Update()">Modificar</button>
+        <!-- <button type="button" id="btnConsult" name="btnConsult" class="btn btn-warning" onclick="Consult()">Consultar</button> -->
+    </div>
+
+    <div id="resultData" class="resultData">
+        <table class="table table-hover">
+            <thead>
+                <tr class="table-primary">
+                    <th>Persona asociada</th>
+                    <th>Usuario</th>
+                    <th>Contraseña</th>
+                    <th>Estado</th>
+                    <th colspan="2">Opciones</th>
+                </tr>
+            </thead>
+            <tbody id="dataResult">
+                <!-- data result database -->
+            </tbody>
+        </table>
+    </div>
+
+    <div id="footerData" class="">
+
+    </div>
+    </form>
+    </div>
+</body>
+
+</html>
+<script>
+    loadTable();
+    loadPerson();
+</script>

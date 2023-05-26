@@ -1,0 +1,3 @@
+function ErrorMessage(title,text){
+
+}
