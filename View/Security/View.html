@@ -5,13 +5,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- library css-->
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
-    <link rel="stylesheet" href="../../Asset/Css/View/Security/Views.css">
-    
-    <!-- Agregar jquery -->
+    <link rel="stylesheet" href="../../Asset/Css/View/Security/View.css">
+
+    <!-- library js-->
     <script src="../../Asset/Library/node_modules/jquery/dist/jquery.js"></script>
-    <script src="../../Js/Security/View.js"></script>
-    <script src="../../Js/LoadData.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- Funciones js  -->
+    <script src='../..//Js/LoadData.js'></script>    
+    <script src='../..//Js/View/Security/View.js'></script>    
+
     <title>Views | Spa</title>
 </head>
 
@@ -27,18 +33,23 @@
                 <div class="form-group">
 
                     <div class="campos">
-                        <label for="" class="form-label mt-2 ">Codigo</label><br>
-                        <input type="text" class="form-control codigo" name="code" id="code" aria-describedby="" placeholder="Inserte la ruta destino">
+                        <label for="" class="form-label mt-2 ">Código</label><br>
+                        <input type="text" class="form-control codigo" name="code" id="code" aria-describedby="" placeholder="Digite el codigo" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                    </div>
+
+                    <div class="campos">
+                        <label for="" class="form-label mt-2 ">Referencia icono</label><br>
+                        <input type="text" class="form-control codigo" name="icon" id="icon" aria-describedby="" placeholder="Digite la referencia del icono">
                     </div>
 
                     <div class="campos">
                         <label for="" class="form-label mt-2 ">Ruta</label><br>
-                        <input type="text" class="form-control codigo" name="route" id="route" aria-describedby="" placeholder="Inserte la ruta destino">
+                        <input type="text" class="form-control codigo" name="route" id="route" aria-describedby="" placeholder="Inserte la ruta de la vista">
                     </div>
 
                     <div class="campos">
                         <label for="" class="form-label mt-2">Etiqueta</label><br>
-                        <input type="text" class="form-control" name="label" id="label" aria-describedby="" placeholder="Describa la etiqueta que colocara" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                        <input type="text" class="form-control" name="label" id="label" aria-describedby="" placeholder="Describa como nombrara de la vista" >
                     </div>
 
                     <div class="campos">
@@ -53,8 +64,8 @@
                         <select class="form-select" id="state" name="state">
                             <!-- data result database -->
                             <option selected="" selected disabled hidden>--- Seleccione ---</option>
-                            <option value="0">Inactivo</option>
                             <option value="1">Activo</option>
+                            <option value="0">Inactivo</option>
                         </select>
                     </div>
                 </div>
@@ -71,7 +82,7 @@
         <table class="table table-hover">
             <thead>
                 <tr class="table-primary">
-                    <th>Code</th>
+                    <th>Código</th>
                     <th>Ruta</th>
                     <th>Etiqueta</th>
                     <th>Modulo asociado</th>

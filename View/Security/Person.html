@@ -6,11 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
-    <link rel="stylesheet" href="../../Asset/Css/View/Security/Persons.css">
+    <link rel="stylesheet" href="../../Asset/Css/View/Security/Person.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <!-- Agregar jquery -->
     <script src="../../Asset/Library/node_modules/jquery/dist/jquery.js"></script>
-    <script src="../../Js/Security/Person.js"></script>
+
+    <script src="../../Js/View/Security/Person.js"></script>
     <title>Persons | Spa</title>
 </head>
 
@@ -38,32 +40,32 @@
                     </div>
                     <div class="campos">
                         <label for="" class="form-label mt-2">Número de documento</label><br>
-                        <input type="number" class="form-control" name="document" id="document" aria-describedby="" placeholder="Número documento">
+                        <input type="number" class="form-control" name="document" id="document" aria-describedby="" placeholder="Digite el número de documento">
                     </div>
 
                     <div class="campos">
                         <label for="" class="form-label mt-2">Primer nombre</label><br>
-                        <input type="text" class="form-control" name="firstName" id="firstName" aria-describedby="" placeholder="Primer nombre" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                        <input type="text" class="form-control" name="firstName" id="firstName" aria-describedby="" placeholder="Digite el primer nombre" onkeyup="javascript:this.value=this.value.toUpperCase();">
                     </div>
 
                     <div class="campos">
                         <label for="" class="form-label mt-2">Segundo nombre</label><br>
-                        <input type="text" class="form-control" name="secondName" id="secondName" aria-describedby="" placeholder="Segundo nombre" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                        <input type="text" class="form-control" name="secondName" id="secondName" aria-describedby="" placeholder="Digite el segundo nombre" onkeyup="javascript:this.value=this.value.toUpperCase();">
                     </div>
 
                     <div class="campos">
                         <label for="" class="form-label mt-2">Primer apellido</label><br>
-                        <input type="text" class="form-control" name="firstLastName" id="firstLastName" aria-describedby="" placeholder="Primer apellido" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                        <input type="text" class="form-control" name="firstLastName" id="firstLastName" aria-describedby="" placeholder="Digite el primer apellido" onkeyup="javascript:this.value=this.value.toUpperCase();">
                     </div>
 
                     <div class="campos">
                         <label for="" class="form-label mt-2">Segundo apellido</label><br>
-                        <input type="text" class="form-control" name="secondLastName" id="secondLastName" aria-describedby="" placeholder="Segundo apellido" onkeyup="javascript:this.value=this.value.toUpperCase();"><br>
+                        <input type="text" class="form-control" name="secondLastName" id="secondLastName" aria-describedby="" placeholder="Digite el segundo apellido" onkeyup="javascript:this.value=this.value.toUpperCase();"><br>
                     </div>
 
                     <div class="campos">
                         <label for="" class="form-label mt-2">Edad</label><br>
-                        <input type="number" class="form-control" name="age" id="age" aria-describedby="" placeholder="Edad">
+                        <input type="number" class="form-control" name="age" id="age" aria-describedby="" placeholder="Digite la edad">
                     </div>
 
                     <div class="campos">
@@ -71,25 +73,25 @@
                         <select class="form-select" id="gender" name="gender">
                             <!-- data result database -->
                             <option selected="" selected disabled hidden>--- Seleccione ---</option>
-                            <option value="1">Hombre</option>
-                            <option value="0">Mujer</option>
+                            <option value="1">Masculino</option>
+                            <option value="0">Femenino</option>
                         </select>
                     </div>
 
                     <div class="campos">
                         <label for="" class="form-label mt-2">Correo Electrónico</label><br>
-                        <input type="text" class="form-control" name="mail" id="mail" aria-describedby="" placeholder="Correo electronico">
+                        <input type="text" class="form-control" name="mail" id="mail" aria-describedby="" placeholder="Digite el correo electrónico">
                     </div>
 
                     <div class="campos">
                         <label for="" class="form-label mt-2">Numero de teléfono</label><br>
-                        <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" aria-describedby="" placeholder="Numero de telefono">
+                        <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" aria-describedby="" placeholder="Digite el numero de teléfono">
                     </div>
 
                     <div class="campos">
                         <label for="" class="form-label mt-2">Dirección</label><br>
                         <input type="text" class="form-control" name="address" id="address" aria-describedby=""
-                        placeholder="Dirección">
+                        placeholder="Ejemplo: (Calle 12a #20 -30)">
                     </div>
 
                     <div class="campos">

@@ -12,7 +12,7 @@ body{
 }
 
 .container{
-    margin: 130px;
+    margin: 100px
 }
 
 .headData{
@@ -49,8 +49,8 @@ body{
 }
 
 .buttonData{
-    margin-left: 100px;
-    margin-top: -90px;
+    margin-left: 70px;
+    margin-top: -50px;
 }
 .buttonData button{
     margin-left: 30px;

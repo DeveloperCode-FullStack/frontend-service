@@ -9,7 +9,7 @@ function loadModulo(){
         var registros = `<option selected="" selected disabled hidden>--- Seleccione ---</option>`;
         items.forEach(function(item, index, array){
             registros += `
-                <option value="`+item.id+`">`+item.code+` - `+item.route+`</option>
+                <option value="`+item.id+`">`+item.code+` - `+item.label+`</option>
             `;
         })
         $("#moduleId").html(registros);

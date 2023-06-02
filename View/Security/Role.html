@@ -5,11 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- library css-->
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
-    <link rel="stylesheet" href="../../Asset/Css/View/Security/Roles.css">
-    <!-- Agregar jquery -->
+    <link rel="stylesheet" href="../../Asset/Css/View/Security/Role.css">
+
+    <!-- library js-->
     <script src="../../Asset/Library/node_modules/jquery/dist/jquery.js"></script>
-    <script src="../../Js/Security/Role.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- Funciones js  -->    
+    <script src='../..//Js/LoadData.js'></script>    
+    <script src='../..//Js/View/Security/Role.js'></script>  >
     <title>Persons | Spa</title>
 </head>
 
@@ -24,7 +30,7 @@
                 <input type="hidden" name="id" id="id" value="">
                 <div class="form-group">
                     <div class="campos">
-                        <label for="" class="form-label mt-2 ">Codigo</label><br>
+                        <label for="" class="form-label mt-2 ">Código</label><br>
                         <input type="text" class="form-control codigo" name="code" id="code" aria-describedby="" placeholder="Digite el codigo" onkeyup="javascript:this.value=this.value.toUpperCase();">
                     </div>
 
@@ -38,8 +44,8 @@
                         <select class="form-select" id="state" name="state">
                             <!-- data result database -->
                             <option selected="" selected disabled hidden>--- Seleccione ---</option>
-                            <option value="0">Inactivo</option>
                             <option value="1">Activo</option>
+                            <option value="0">Inactivo</option>
                         </select>
                     </div>
                 </div>
@@ -56,8 +62,7 @@
         <table class="table table-hover">
             <thead>
                 <tr class="table-primary">
-                    <th>Id</th>
-                    <th>Codigo</th>
+                    <th>Código</th>
                     <th>Descripción</th>
                     <th>Estado</th>
                     <th colspan="2">Opciones</th>

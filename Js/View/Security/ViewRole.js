@@ -2,7 +2,7 @@
 // Busqueda por id
 function findById(id) {
     $.ajax({
-        url: 'http://localhost:9000/backend-service/api/security/userRole/' + id,
+        url: 'http://localhost:9000/backend-service/api/security/viewRole/' + id,
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -10,14 +10,14 @@ function findById(id) {
     }).done(function (item) {
         $("#id").val(item.id)
         $("#roleId").val(item.roleId.id)
-        $("#userId").val(item.userId.id)
+        $("#viewId").val(item.viewId.id)
         $("#state").val(item.state==true?'1':'0')      
     })
 }
 
 function loadTable() {
     $.ajax({
-        url: 'http://localhost:9000/backend-service/api/security/userRole',
+        url: 'http://localhost:9000/backend-service/api/security/viewRole',
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -29,7 +29,7 @@ function loadTable() {
 
                         <tr class="table-light">
                             <td>`+item.roleId.description+`</td>
-                            <td>`+item.userId.user+`</td>
+                            <td>`+item.viewId.label+`</td>
                             <td>`+(item.state==true?'Activo':'Inactivo')+`</td>
                             <td><button class="btnEdit" type="button" onclick="findById(`+item.id+`);"><i class="fi fi-rr-pencil"></i></button></td>
                             <td><button class="btnDelete" type="button" onclick="deleteById(`+item.id+`);"><i class="fi fi-rr-trash"></i></button></td>
@@ -43,13 +43,30 @@ function loadTable() {
 //Accion para eliminar un registro seleccionado 
 function deleteById(id){
     $.ajax({
-        url: 'http://localhost:9000/backend-service/api/security/userRole/' + id,
+        url: 'http://localhost:9000/backend-service/api/security/viewRole/' + id,
         method: "delete",
         headers: {
             "Content-Type": "application/json"
         }
     }).done(function (result) {
         loadTable();
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 4000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+          
+        Toast.fire({
+            icon: 'error',
+            title: 'Usuario eliminado',
+        });
     })
 }
 
@@ -57,13 +74,13 @@ function deleteById(id){
 //Accion de adicionar un registro
 function Add(){
     $.ajax({
-        url: 'http://localhost:9000/backend-service/api/security/userRole',
+        url: 'http://localhost:9000/backend-service/api/security/viewRole',
         data: JSON.stringify({
             roleId: {
                 id:$("#roleId").val()
             },
-            userId: {
-                id:$("#userId").val()
+            viewId: {
+                id:$("#viewId").val()
             },  
             state: parseInt($("#state").val()),
             userCreationId: 1,
@@ -79,20 +96,44 @@ function Add(){
 
         //Limpiar formulario
         clearData();
-    })
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 4000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+          
+        Toast.fire({
+            icon: 'success',
+            title: 'Registro exitoso',
+        });
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        // Si la respuesta es un error
+        Swal.fire({
+            icon: 'error',
+            title: "Error",
+            text: jqXHR.responseJSON.message,
+        })    
+    });
 }
 
 
 //Accion de actualizar un registro
 function Update(){
     $.ajax({
-        url: 'http://localhost:9000/backend-service/api/security/userRole/' + $("#id").val(),
+        url: 'http://localhost:9000/backend-service/api/security/viewRole/' + $("#id").val(),
         data: JSON.stringify({
             roleId: {
                 id:$("#roleId").val()
             },
-            userId: {
-                id:$("#userId").val()
+            viewId: {
+                id:$("#viewId").val()
             },  
             state: parseInt($("#state").val()),
             userCreationId: 1,
@@ -110,6 +151,23 @@ function Update(){
 
         //Limpiar formulario
         clearData();
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 4000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+          
+        Toast.fire({
+            icon: 'warning',
+            title: 'Modificación exitosa',
+        });
     })
 }
 
@@ -117,6 +175,6 @@ function Update(){
 function clearData(){
     $("#id").val(""),
     $("#roleId").val(""),
-    $("#userId").val(""),
+    $("#viewId").val(""),
     $("#state").val("")
 }

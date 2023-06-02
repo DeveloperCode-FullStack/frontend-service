@@ -1,9 +1,12 @@
 function Login() {
     let user = document.getElementById('txtuser').value;
     let password = document.getElementById('txtpassword').value;
+    localStorage.setItem('user','user');
+    localStorage.setItem('password','password');
+
 
     //Datos de ingreso de la aplicación User: 1234 Pass: 1234
-    if (user == '1234' && password == '1234') {
+    if (user == 0 && password ==0) {
         Swal.fire({
             icon: 'success',
             title: 'Bienvenido',
@@ -57,13 +60,15 @@ function Clear() {
 
 //pintar permiso
 
-function loadPermission() {
+function loadPermission(){
+    
     $.ajax({
-        url: 'http://localhost:9000/backend-service/api/security/user/permission/johancelis98/1234',
+        url: 'http://localhost:9000/backend-service/api/security/user/permission/J12/1234',
         method: "GET",
         headers: {
             "Content-Type": "application/json"
         }
+        
     }).done(function (items) {
         var permission = `
                 <span class="modulo">Seguridad</span>
@@ -74,15 +79,27 @@ function loadPermission() {
                     </a>
                     <span class="tooltip">Tablero</span>
                 </li>
+                <li class="profile">
+                    <div class="profile-details">
+                        <img src="../Asset/Img/myAvatar.png" alt="profileImg">
+                        <div class="name_job">
+                            <div class="name">Johan Celis</div>
+                            <div class="job">Administrador</div>
+                        </div>
+                        
+                    </div>
+
+                    <a id="log_out" name='cerrar' onclick="SignOut()"><i class='bx bx-log-out bx-lg'  ></i></a>
+                </li>
         `;
         items.forEach(function (item, index, array) {
             permission += `
                 <li>
-                    <a href="`+item.label+`/`+item.route+`" target="workSpace">
-                        <i class="fi fi-rr-users"></i>
-                        <span class="links_name">`+item.description+`</span>
+                    <a href="`+item.moduleRoute+`/`+item.viewRoute+`" target="workSpace">
+                        <i class="`+item.viewIcon+`"></i>
+                        <span class="links_name">`+item.viewLabel+`</span>
                     </a>
-                    <span class="tooltip">`+item.view+`</span>
+                    <span class="tooltip">`+item.viewLabel+`</span>
                 </li>
             `;
         })
