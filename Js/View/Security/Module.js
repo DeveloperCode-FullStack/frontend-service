@@ -181,3 +181,38 @@ function clearData(){
     $("#label").val(""),
     $("#state").val("")
 }
+
+
+
+$(document).ready(function() {
+    $('#tableData').DataTable();
+});
+
+
+//Cargar datatable
+function loadDatatable(){
+    const endpoint = 'http://localhost:9000/backend-service/api/security/module/datatable';
+    const page = 10;
+    const size = 1;
+    const columnOrder = 'state';
+    const columnDirection = 'asc';
+    const search = $("#search").val();
+    
+    const url = new URL(endpoint);
+    url.searchParams.append('page', page);
+    url.searchParams.append('size', size);
+    url.searchParams.append('column_order', columnOrder);
+    url.searchParams.append('column_direction', columnDirection);
+    url.searchParams.append('search', search);
+    
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        // Aquí puedes manejar la respuesta de la solicitud
+        console.log(data);
+      })
+      .catch(error => {
+        // Aquí puedes manejar cualquier error que ocurra durante la solicitud
+        console.error(error);
+    });
+}

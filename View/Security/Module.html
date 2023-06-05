@@ -5,17 +5,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- library css-->
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <link rel="stylesheet" href="../../Asset/Css/View/Security/Module.css">
-
+    
     <!-- library js-->
     <script src="../../Asset/Library/node_modules/jquery/dist/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
-    <!-- Funciones js  -->    
-    <script src='../..//Js/View/Security/Module.js'></script>    
+    <!-- jQuery -->
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+
+    <!-- DataTables -->
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.min.css">
+
+    <!-- Funciones js  -->
+    <script src='../..//Js/View/Security/Module.js'></script>
 
     <title>Persons | Spa</title>
 </head>
@@ -32,17 +40,20 @@
                 <div class="form-group">
                     <div class="campos">
                         <label for="" class="form-label mt-2 ">Código</label><br>
-                        <input type="url" class="form-control codigo" name="code" id="code" aria-describedby="" placeholder="Digite el codigo" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                        <input type="url" class="form-control codigo" name="code" id="code" aria-describedby=""
+                            placeholder="Digite el codigo" onkeyup="javascript:this.value=this.value.toUpperCase();">
                     </div>
 
                     <div class="campos">
                         <label for="" class="form-label mt-2">Ruta</label><br>
-                        <input type="text" class="form-control" name="route" id="route" aria-describedby="" placeholder="Digite la ruta del modulo">
+                        <input type="text" class="form-control" name="route" id="route" aria-describedby=""
+                            placeholder="Digite la ruta del modulo">
                     </div>
 
                     <div class="campos">
                         <label for="" class="form-label mt-2">Etiqueta</label><br>
-                        <input type="text" class="form-control" name="label" id="label" aria-describedby="" placeholder="Digite el nombre del modulo">
+                        <input type="text" class="form-control" name="label" id="label" aria-describedby=""
+                            placeholder="Digite el nombre del modulo">
                     </div>
 
                     <div class="campos">
@@ -56,16 +67,18 @@
                     </div>
                 </div>
             </div>
+        </form>
     </div>
 
     <div id="buttonData" class="buttonData">
         <button type="button" id="btnAdd" name="btnAdd" class="btn btn-primary" onclick="Add()">Registrar</button>
-        <button type="button" id="btnUpdate" name="btnUpdate" class="btn btn-success" onclick="Update()">Modificar</button>
+        <button type="button" id="btnUpdate" name="btnUpdate" class="btn btn-success"
+            onclick="Update()">Modificar</button>
         <!-- <button type="button" id="btnConsult" name="btnConsult" class="btn btn-warning" onclick="Consult()">Consultar</button> -->
     </div>
 
     <div id="resultData" class="resultData">
-        <table class="table table-hover">
+        <table class="display" id="tableData">
             <thead>
                 <tr class="table-primary">
                     <th>Código</th>
@@ -76,7 +89,7 @@
                 </tr>
             </thead>
             <tbody id="dataResult">
-                
+
             </tbody>
         </table>
     </div>
@@ -91,5 +104,5 @@
 </html>
 
 <script>
-    loadTable();
+    loadDatatable();
 </script>
