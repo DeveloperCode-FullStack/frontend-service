@@ -152,3 +152,49 @@ body{
 .btnDelete:active{
     transform: scale(0.98);
 }
+
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .toggle-switch-checkbox {
+    display: none;
+  }
+  
+  .toggle-switch-label {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #ccc;
+    border-radius: 34px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: background-color 0.4s;
+  }
+  
+  .toggle-switch-checkbox:checked + .toggle-switch-label {
+    background-color: #2196F3;
+  }
+  
+  .toggle-switch-label::before {
+    content: "";
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: white;
+    top: 4px;
+    left: 4px;
+    transition: transform 0.4s;
+  }
+  
+  .toggle-switch-checkbox:checked + .toggle-switch-label::before {
+    transform: translateX(26px);
+  }
+  

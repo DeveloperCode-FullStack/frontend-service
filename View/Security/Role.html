@@ -6,21 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- library css-->
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
-    <link rel="stylesheet" href="../../Asset/Css/View/Form.css">
-    
-    <!-- library js-->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+
+    <!-- sweetalert -->
     <script src="../../Asset/Library/node_modules/jquery/dist/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
-    <!-- jQuery -->
-    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
 
-    <!-- DataTables -->
-    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.min.css">
+    <!-- datatable -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+    <!-- iconos-->
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    
+    <!-- estilos propios -->
+    <link rel="stylesheet" href="../../Asset/Css/View/Form.css">
 
     <!-- Funciones js  -->
     <script src='../../Js/View/Security/Role.js'></script>
@@ -33,40 +36,61 @@
         <form name="formData" id="formData">
             <div id="headData" class="headData">
                 <h2>Registro Roles</h2>
+                    <!-- Botón para abrir el modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#insertData">Nuevo Registro</button>
             </div>
 
-            <div id="bodyData" class="bodyData">
-                <input type="hidden" name="id" id="id" value="">
-                <div class="form-group">
-                    <div class="campos">
-                        <label for="" class="form-label mt-2 ">Código</label><br>
-                        <input type="text" class="form-control codigo" name="code" id="code" aria-describedby="" placeholder="Digite el codigo" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                    </div>
+            <!-- Modal -->
+            <div class="modal fade" id="insertData" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl"> <!-- Cambia la clase a modal-xl para hacerlo más ancho -->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="ModalLabel">Registro de Roles</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Contenido del modal -->
+                            <div id="bodyData" class="bodyData">
+                                <input type="hidden" name="id" id="id" value="">
+                                <div class="form-group">
+                                    <div class="campos">
+                                        <label for="" class="form-label mt-2 ">Código</label><br>
+                                        <input type="text" class="form-control codigo" name="code" id="code"
+                                            aria-describedby="" placeholder="Digite el codigo"
+                                            onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                    </div>
 
-                    <div class="campos">
-                        <label for="" class="form-label mt-2">Descripción</label><br>
-                        <input type="text" class="form-control" name="description" id="description" aria-describedby="" placeholder="Describa el rol" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                    </div>
+                                    <div class="campos">
+                                        <label for="" class="form-label mt-2">Descripción</label><br>
+                                        <input type="text" class="form-control" name="description" id="description"
+                                            aria-describedby="" placeholder="Describa el rol"
+                                            onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                    </div>
 
-                    <div class="campos">
-                        <label for="" class="form-label mt-2">Estado</label><br>
-                        <select class="form-select" id="state" name="state">
-                            <!-- data result database -->
-                            <option selected="" selected disabled hidden>--- Seleccione ---</option>
-                            <option value="1">Activo</option>
-                            <option value="0">Inactivo</option>
-                        </select>
+                                    <div class="campos">
+                                        <label for="" class="form-label mt-2">Estado</label><br>
+                                        <div class="toggle-switch">
+                                            <input type="checkbox" id="state" name="state"
+                                                class="toggle-switch-checkbox">
+                                            <label for="state" class="toggle-switch-label"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div id="buttonData" class="buttonData">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearData()">Cerrar</button>
+                            <button type="button" id="btnAdd" name="btnAdd" class="btn btn-primary" onclick="performAction()">Guardar Cambios</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
     </div>
 
-    <div id="buttonData" class="buttonData">
-        <button type="button" id="btnAdd" name="btnAdd" class="btn btn-primary" onclick="Add()">Agregar</button>
-        <button type="button" id="btnUpdate" name="btnUpdate" class="btn btn-success" onclick="Update()">Modificar</button>
-        <!-- <button type="button" id="btnConsult" name="btnConsult" class="btn btn-warning" onclick="Consult()">Consultar</button> -->
-    </div>
 
+    <!-- Revisar datatable-->
     <div id="resultData" class="resultData">
         <table class="table table-hover">
             <thead>

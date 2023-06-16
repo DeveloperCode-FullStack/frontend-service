@@ -1,3 +1,18 @@
+//Identificar Add || Update
+function performAction() {
+    var action = $("#insertData").data("action");
+
+    if (action === "Update") {
+        Update();
+        $("#insertData").data("action", "");
+    }else{
+        Add();
+    }
+
+    // Cerrar el modal
+    $('#insertData').modal('hide');
+}
+
 //Cargar de manera automatica los datos regostrados
 // Busqueda por id
 function findById(id) {
@@ -13,6 +28,12 @@ function findById(id) {
         $("#description").val(item.description)
         $("#state").val(item.state==true?'1':'0')      
     })
+
+    // Establecer la acción como "Update"
+    $("#insertData").data("action", "Update");
+
+    // Mostrar el modal
+    $('#insertData').modal('show');
 }
 
 function loadTable() {
@@ -78,7 +99,7 @@ function Add(){
         data: JSON.stringify({
             code: $("#code").val(),
             description: $("#description").val(),
-            state: parseInt($("#state").val()),
+            state: $("#state").is(':checked') ? 1 : 0,
             userCreationId: 1,
             dateCreation: new Date()
         }),
@@ -127,7 +148,7 @@ function Update(){
         data: JSON.stringify({
             code: $("#code").val(),
             description: $("#description").val(),
-            state: parseInt($("#state").val()),
+            state: $("#state").is(':checked') ? 1 : 0,
             userCreationId: 1,
             dateCreation: new Date(),
             userModificationId: 1,

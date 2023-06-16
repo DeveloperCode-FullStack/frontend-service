@@ -108,7 +108,7 @@ function Add() {
             code: $("#code").val(),
             route: $("#route").val(),
             label: $("#label").val(),
-            state: parseInt($("#state").val()),
+            state: $("#state").is(':checked') ? 1 : 0,
             userCreationId: 1,
             dateCreation: new Date()
         }),
@@ -160,7 +160,7 @@ function Update() {
             code: $("#code").val(),
             route: $("#route").val(),
             label: $("#label").val(),
-            state: parseInt($("#state").val()),
+            state: $("#state").is(':checked') ? 1 : 0,
             userCreationId: 1,
             dateCreation: new Date(),
             userModificationId: 1,
@@ -249,3 +249,7 @@ function loadDatatable() {
         });
 
 }
+
+// $(document).ready( function () {
+//     $('#tableData').DataTable();
+// } );
