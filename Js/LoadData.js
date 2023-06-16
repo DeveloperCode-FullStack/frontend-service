@@ -63,7 +63,7 @@ function loadPerson(){
         var registros = `<option selected="" selected disabled hidden>--- Seleccione ---</option>`;
         items.forEach(function(item, index, array){
             registros += `
-                <option value="`+item.id+`">`+item.document+` - `+item.firstName+`</option>
+                <option value="`+item.id+`">`+item.firstName+` `+item.secondName+` `+item.firstLastName+` `+item.secondLastName+`</option>
             `;
         })
         $("#personId").html(registros);

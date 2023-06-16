@@ -1,4 +1,21 @@
-//Cargar de manera automatica los datos regostrados
+//Identificar Add || Update
+function performAction() {
+    var action = $("#insertData").data("action");
+
+    if (action === "Update") {
+        Update();
+        $("#insertData").data("action", "");
+    }else{
+        Add();
+    }
+
+    // Cerrar el modal
+    $('#insertData').modal('hide');
+}
+
+
+
+
 // Busqueda por id
 function findById(id) {
     $.ajax({
@@ -12,10 +29,17 @@ function findById(id) {
         $("#code").val(item.code)
         $("#route").val(item.route)
         $("#label").val(item.label)
-        $("#state").val(item.state==true?'1':'0')      
+        $("#state").val(item.state == true ? '1' : '0')
     })
+
+    // Establecer la acción como "Update"
+    $("#insertData").data("action", "Update");
+
+    // Mostrar el modal
+    $('#insertData').modal('show');
 }
 
+//Cargar de manera automatica los datos regostrados
 function loadTable() {
     $.ajax({
         url: 'http://localhost:9000/backend-service/api/security/module',
@@ -29,21 +53,21 @@ function loadTable() {
             registros += `
 
                         <tr class="table-light">
-                            <td>`+item.code+`</td>
-                            <td>`+item.route+`</td>
-                            <td>`+item.label+`</td>
-                            <td>`+(item.state==true?'Activo':'Inactivo')+`</td>
-                            <td><button class="btnEdit" type="button" onclick="findById(`+item.id+`);"><i class="fi fi-rr-pencil"></i></button></td>
-                            <td><button class="btnDelete" type="button" onclick="deleteById(`+item.id+`);"><i class="fi fi-rr-trash"></i></button></td>
+                            <td>`+ item.code + `</td>
+                            <td>`+ item.route + `</td>
+                            <td>`+ item.label + `</td>
+                            <td>`+ (item.state == true ? 'Activo' : 'Inactivo') + `</td>
+                            <td><button class="btnEdit" type="button" onclick="findById(`+ item.id + `);"><i class="fi fi-rr-pencil"></i></button></td>
+                            <td><button class="btnDelete" type="button" onclick="deleteById(`+ item.id + `);"><i class="fi fi-rr-trash"></i></button></td>
                         </tr>
                         `;
         })
-        $("#dataResult").html(registros);   
+        $("#dataResult").html(registros);
     })
 }
 
 //Accion para eliminar un registro seleccionado 
-function deleteById(id){
+function deleteById(id) {
     $.ajax({
         url: 'http://localhost:9000/backend-service/api/security/module/' + id,
         method: "delete",
@@ -51,7 +75,7 @@ function deleteById(id){
             "Content-Type": "application/json"
         }
     }).done(function (result) {
-        
+
         loadTable();
 
         const Toast = Swal.mixin({
@@ -61,23 +85,23 @@ function deleteById(id){
             timer: 4000,
             timerProgressBar: true,
             didOpen: (toast) => {
-              toast.addEventListener('mouseenter', Swal.stopTimer)
-              toast.addEventListener('mouseleave', Swal.resumeTimer)
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
             }
         })
-          
+
         Toast.fire({
             icon: 'error',
             title: 'Modulo eliminado',
         })
 
-        
+
     })
 }
 
 
 //Accion de adicionar un registro
-function Add(){
+function Add() {
     $.ajax({
         url: 'http://localhost:9000/backend-service/api/security/module',
         data: JSON.stringify({
@@ -102,11 +126,11 @@ function Add(){
             timer: 4000,
             timerProgressBar: true,
             didOpen: (toast) => {
-              toast.addEventListener('mouseenter', Swal.stopTimer)
-              toast.addEventListener('mouseleave', Swal.resumeTimer)
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
             }
         })
-          
+
         Toast.fire({
             icon: 'success',
             title: 'Registro exitoso',
@@ -123,13 +147,13 @@ function Add(){
             icon: 'error',
             title: "Error",
             text: jqXHR.responseJSON.message,
-        })      
+        })
     });
 }
 
 
 //Accion de actualizar un registro
-function Update(){
+function Update() {
     $.ajax({
         url: 'http://localhost:9000/backend-service/api/security/module/' + $("#id").val(),
         data: JSON.stringify({
@@ -155,11 +179,11 @@ function Update(){
             timer: 4000,
             timerProgressBar: true,
             didOpen: (toast) => {
-              toast.addEventListener('mouseenter', Swal.stopTimer)
-              toast.addEventListener('mouseleave', Swal.resumeTimer)
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
             }
         })
-          
+
         Toast.fire({
             icon: 'warning',
             title: 'Modificación exitosa',
@@ -174,45 +198,54 @@ function Update(){
 }
 
 // Función para limpiar datos
-function clearData(){
+function clearData() {
     $("#id").val(""),
-    $("#code").val(""),
-    $("#route").val(""),
-    $("#label").val(""),
-    $("#state").val("")
+        $("#code").val(""),
+        $("#route").val(""),
+        $("#label").val(""),
+        $("#state").val("")
 }
 
 
 
-$(document).ready(function() {
+$(document).ready(function () {
     $('#tableData').DataTable();
 });
 
 
 //Cargar datatable
-function loadDatatable(){
+function loadDatatable() {
     const endpoint = 'http://localhost:9000/backend-service/api/security/module/datatable';
     const page = 10;
     const size = 1;
     const columnOrder = 'state';
     const columnDirection = 'asc';
     const search = $("#search").val();
-    
+
     const url = new URL(endpoint);
     url.searchParams.append('page', page);
     url.searchParams.append('size', size);
     url.searchParams.append('column_order', columnOrder);
     url.searchParams.append('column_direction', columnDirection);
     url.searchParams.append('search', search);
-    
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        // Aquí puedes manejar la respuesta de la solicitud
-        console.log(data);
-      })
-      .catch(error => {
-        // Aquí puedes manejar cualquier error que ocurra durante la solicitud
-        console.error(error);
-    });
+
+    fetch('http://localhost:9000/backend-service/api/security/module/datatable?page=10&size=1&column_order=id&column_direction=asc&search=a')
+        .then(response => response.json())
+        .then(data => {
+            // Aquí puedes manejar la respuesta de la solicitud
+            console.log(data);
+
+            // Acceder a los atributos del objeto
+            const content = data.data.content;
+            const totalPages = data.data.totalPages;
+            const totalElements = data.data.totalElements;
+            // ... y así sucesivamente
+
+            // Hacer algo con los datos obtenidos
+        })
+        .catch(error => {
+            // Aquí puedes manejar cualquier error que ocurra durante la solicitud
+            console.error(error);
+        });
+
 }
